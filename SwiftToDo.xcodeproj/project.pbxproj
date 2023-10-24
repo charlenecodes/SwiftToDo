@@ -71,6 +71,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE1A3F1A2AE7A418002FF225 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE1A3F1B2AE7A427002FF225 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE1A3F1D2AE7D61E002FF225 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CE2C97092AE12C23007C6793 = {
 			isa = PBXGroup;
 			children = (
@@ -94,8 +115,11 @@
 		CE2C97142AE12C23007C6793 /* SwiftToDo */ = {
 			isa = PBXGroup;
 			children = (
+				CE1A3F1D2AE7D61E002FF225 /* ViewModel */,
+				CE1A3F1B2AE7A427002FF225 /* View */,
 				CE2C97152AE12C23007C6793 /* SwiftToDoApp.swift */,
 				CE2C97172AE12C23007C6793 /* ContentView.swift */,
+				CE1A3F1A2AE7A418002FF225 /* Model */,
 				CE2C97192AE12C25007C6793 /* Assets.xcassets */,
 				CE2C971B2AE12C25007C6793 /* Preview Content */,
 			);
