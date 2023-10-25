@@ -11,6 +11,7 @@ struct ContentView: View {
     @State var taskList: [String] = []
     @State var taskEntry: String = ""
     @State var isActive = false
+    @State var isDoubleClicked = false
     
     var body: some View {
         NavigationView {
@@ -27,10 +28,17 @@ struct ContentView: View {
                     Spacer()
                 } else {
                     List{
-                        ForEach(taskList, id: \.self) { task in
+                        ForEach(taskList.indices, id: \.self) { index in
                             HStack{
-                                Text(task)
+                                Text(taskList[index])
+                                    .onTapGesture (count: 2) {
+                                        isDoubleClicked.toggle()
+                                    }
                                 Spacer()
+                                Text("❌")
+                                    .onTapGesture {
+                                        taskList.remove(at: index)
+                                    }
                             }
                         }
                     }
