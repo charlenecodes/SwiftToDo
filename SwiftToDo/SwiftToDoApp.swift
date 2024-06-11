@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct SwiftToDoApp: App {
+    
+    @StateObject private var taskViewModel: TaskViewModel = TaskViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            // we put the taskViewModel in the environment so that all the views within the navigation view have access to it
+            NavigationView{
+                ToDoListView()
+            }
+            // we are able to observe taskViewModel as an environmentObject because we have set the class TaskViewModel to ObservableObject
+            .environmentObject(taskViewModel)
         }
     }
 }

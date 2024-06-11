@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		CE2C97162AE12C23007C6793 /* SwiftToDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C97152AE12C23007C6793 /* SwiftToDoApp.swift */; };
-		CE2C97182AE12C23007C6793 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C97172AE12C23007C6793 /* ContentView.swift */; };
 		CE2C971A2AE12C25007C6793 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2C97192AE12C25007C6793 /* Assets.xcassets */; };
 		CE2C971D2AE12C25007C6793 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2C971C2AE12C25007C6793 /* Preview Assets.xcassets */; };
 		CE2C97272AE12C25007C6793 /* SwiftToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C97262AE12C25007C6793 /* SwiftToDoTests.swift */; };
 		CE2C97312AE12C25007C6793 /* SwiftToDoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C97302AE12C25007C6793 /* SwiftToDoUITests.swift */; };
 		CE2C97332AE12C25007C6793 /* SwiftToDoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C97322AE12C25007C6793 /* SwiftToDoUITestsLaunchTests.swift */; };
+		CEA01F962BC7E9CE00819733 /* ToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA01F952BC7E9CE00819733 /* ToDoListView.swift */; };
+		CEA01F9E2BC80CBD00819733 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA01F9D2BC80CBD00819733 /* TaskModel.swift */; };
+		CEA01FA02BC8196400819733 /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA01F9F2BC8196400819733 /* TaskView.swift */; };
+		CEA01FA22BC90D5800819733 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA01FA12BC90D5800819733 /* TaskViewModel.swift */; };
+		CEA0D4422BE0B900008E1FF9 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA0D4412BE0B900008E1FF9 /* AddTaskView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +40,6 @@
 /* Begin PBXFileReference section */
 		CE2C97122AE12C23007C6793 /* SwiftToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2C97152AE12C23007C6793 /* SwiftToDoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftToDoApp.swift; sourceTree = "<group>"; };
-		CE2C97172AE12C23007C6793 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CE2C97192AE12C25007C6793 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE2C971C2AE12C25007C6793 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CE2C97222AE12C25007C6793 /* SwiftToDoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftToDoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +47,11 @@
 		CE2C972C2AE12C25007C6793 /* SwiftToDoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftToDoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2C97302AE12C25007C6793 /* SwiftToDoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftToDoUITests.swift; sourceTree = "<group>"; };
 		CE2C97322AE12C25007C6793 /* SwiftToDoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftToDoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CEA01F952BC7E9CE00819733 /* ToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListView.swift; sourceTree = SOURCE_ROOT; };
+		CEA01F9D2BC80CBD00819733 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = SOURCE_ROOT; };
+		CEA01F9F2BC8196400819733 /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = SOURCE_ROOT; };
+		CEA01FA12BC90D5800819733 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TaskViewModel.swift; path = SwiftToDo/Views/SwiftToDo/Views/ViewModels/TaskViewModel.swift; sourceTree = SOURCE_ROOT; };
+		CEA0D4412BE0B900008E1FF9 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddTaskView.swift; path = SwiftToDo/AddTaskView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,25 +79,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CE1A3F1A2AE7A418002FF225 /* Model */ = {
+		CE0D0EE52C05F65B00377FDB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				CEA01FA12BC90D5800819733 /* TaskViewModel.swift */,
 			);
-			path = Model;
+			name = ViewModels;
+			path = Views/SwiftToDo/Views/ViewModels;
 			sourceTree = "<group>";
 		};
-		CE1A3F1B2AE7A427002FF225 /* View */ = {
+		CE1A3F1A2AE7A418002FF225 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CEA01F9D2BC80CBD00819733 /* TaskModel.swift */,
 			);
-			path = View;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		CE1A3F1D2AE7D61E002FF225 /* ViewModel */ = {
+		CE1A3F1B2AE7A427002FF225 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CEA01F952BC7E9CE00819733 /* ToDoListView.swift */,
+				CEA01F9F2BC8196400819733 /* TaskView.swift */,
+				CEA0D4412BE0B900008E1FF9 /* AddTaskView.swift */,
 			);
-			path = ViewModel;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CE2C97092AE12C23007C6793 = {
@@ -115,11 +129,10 @@
 		CE2C97142AE12C23007C6793 /* SwiftToDo */ = {
 			isa = PBXGroup;
 			children = (
-				CE1A3F1D2AE7D61E002FF225 /* ViewModel */,
-				CE1A3F1B2AE7A427002FF225 /* View */,
 				CE2C97152AE12C23007C6793 /* SwiftToDoApp.swift */,
-				CE2C97172AE12C23007C6793 /* ContentView.swift */,
-				CE1A3F1A2AE7A418002FF225 /* Model */,
+				CE1A3F1B2AE7A427002FF225 /* Views */,
+				CE0D0EE52C05F65B00377FDB /* ViewModels */,
+				CE1A3F1A2AE7A418002FF225 /* Models */,
 				CE2C97192AE12C25007C6793 /* Assets.xcassets */,
 				CE2C971B2AE12C25007C6793 /* Preview Content */,
 			);
@@ -215,7 +228,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					CE2C97112AE12C23007C6793 = {
 						CreatedOnToolsVersion = 14.2;
@@ -281,8 +294,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE2C97182AE12C23007C6793 /* ContentView.swift in Sources */,
+				CEA01F962BC7E9CE00819733 /* ToDoListView.swift in Sources */,
+				CEA01FA22BC90D5800819733 /* TaskViewModel.swift in Sources */,
 				CE2C97162AE12C23007C6793 /* SwiftToDoApp.swift in Sources */,
+				CEA0D4422BE0B900008E1FF9 /* AddTaskView.swift in Sources */,
+				CEA01F9E2BC80CBD00819733 /* TaskModel.swift in Sources */,
+				CEA01FA02BC8196400819733 /* TaskView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +372,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -415,6 +433,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
