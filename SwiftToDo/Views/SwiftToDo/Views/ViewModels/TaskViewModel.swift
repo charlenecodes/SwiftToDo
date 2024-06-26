@@ -26,7 +26,9 @@ class TaskViewModel: ObservableObject {
     @Published var isTextFieldInFocus: Bool = false;
     
     @Published var isAppInLightMode: Bool = true
-        
+    
+    @Published var onlyShowsIncompleteTasks: Bool = false
+    
     init() {
         getItems()
     }
