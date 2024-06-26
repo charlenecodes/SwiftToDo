@@ -36,6 +36,7 @@ struct ToDoListView: View {
                     }
                 }
             }
+            .scrollDismissesKeyboard(.interactively)
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
