@@ -6,9 +6,30 @@
 //
 
 import Foundation
-struct TaskModel: Identifiable {
-    let id: String = UUID().uuidString
-    let item: String
+
+// this is an immutable struct (all are let - they will not change)
+// conforming to Codable means that TaskModel can be encoded/decoded, which is needed for saving it into UserDefaults
+struct TaskModel: Identifiable, Codable {
+    let id: String
+    let task: String
     let isComplete: Bool
-    let isStrikethrough: Bool = false
+    
+    init(id: String = UUID().uuidString, task: String, isComplete: Bool) {
+        self.id = id
+        self.task = task
+        self.isComplete = isComplete
+    }
+    
+    func markComplete () -> TaskModel {
+        return TaskModel(id: id, task: task, isComplete: !isComplete)
+    }
+    
+    func undoCompletion () -> TaskModel {
+        return TaskModel(id: id, task: task, isComplete: !isComplete)
+    }
+    
+//    func editTask () -> TaskModel {
+//        return TaskModel(id: id, task: task, isComplete: isComplete)
+//    }
+
 }

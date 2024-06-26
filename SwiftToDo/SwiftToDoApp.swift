@@ -15,11 +15,11 @@ struct SwiftToDoApp: App {
     var body: some Scene {
         WindowGroup {
             // we put the taskViewModel in the environment so that all the views within the navigation view have access to it
-            NavigationView{
+            NavigationStack {
                 ToDoListView()
             }
             // we are able to observe taskViewModel as an environmentObject because we have set the class TaskViewModel to ObservableObject
             .environmentObject(taskViewModel)
-        }
+                    }
     }
 }

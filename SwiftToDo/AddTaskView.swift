@@ -9,65 +9,92 @@ import SwiftUI
 
 struct AddTaskView: View {
     
-    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var taskViewModel: TaskViewModel
-    @State var textFieldText: String = ""
     
-    // for alerts
-    @State var alertTitle: String = ""
-    @State var showAlert: Bool = false
+    var brightPurple: Color = Color(red: 166, green: 124, blue: 217)
+    var pastelPurple: Color = Color(red: 218, green: 186, blue: 252)
     
     var body: some View {
-        ScrollView {
-            // we bind to a variable by using the $ dollar sign before it
-            VStack {
-                TextField("Enter a new task...", text: $textFieldText)
-                    .textFieldStyle(.roundedBorder)
-                    .frame(height: 50)
-                    .background(.white)
-                    .cornerRadius(10)
-                    .foregroundColor(.indigo)
-                // even if the action is a function we do not add the braces
-                Button(action: submitTask, label: {
-                    Text("Submit".uppercased())
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(height: 50)
-                        .frame(maxWidth: .infinity)
-                        .background(.indigo)
-                        .cornerRadius(10)
-                })
+        // we bind to a variable by using the $ dollar sign before it
+        VStack {
+            if taskViewModel.taskList.isEmpty {
+                Text("Add an item to start your list 🖊️")
+                    .foregroundColor(taskViewModel.isAppInLightMode ? .indigo : .white)
+                    .fontWeight(.bold)
             }
-            .padding(18)
+            if taskViewModel.isAppInLightMode {
+                HStack {
+                    TextField("Enter a new task...", text: $taskViewModel.textFieldText)
+                        .textFieldStyle(CustomTextFieldStyle())
+                        .onTapGesture {
+                            taskViewModel.isTextFieldInFocus = true
+                        }
+                    if taskViewModel.textFieldText != "" {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                            .onTapGesture {
+                                taskViewModel.textFieldText = ""
+                            }
+                            .padding(.trailing, 5)
+                    }
+                }
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(taskViewModel.isTextFieldInFocus ? .indigo : .gray, lineWidth: taskViewModel.isTextFieldInFocus ? 3 : 2)
+                )
+                // this background makes it so that the cancel button looks like it's part of the text field
+                .background(Color(UIColor.secondarySystemBackground))
+                .cornerRadius(10)
+            } else {
+                HStack {
+                    TextField("Enter a new task...", text: $taskViewModel.textFieldText)
+                        .textFieldStyle(CustomTextFieldStyle())
+                        .onTapGesture {
+                            taskViewModel.isTextFieldInFocus = true
+                        }
+                    if taskViewModel.textFieldText != "" {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                            .onTapGesture {
+                                taskViewModel.textFieldText = ""
+                            }
+                            .padding(.trailing, 5)
+                    }
+                }
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(taskViewModel.isTextFieldInFocus ? .indigo : .black, lineWidth: taskViewModel.isTextFieldInFocus ? 3 : 2)
+                )
+                // this background makes it so that the cancel button looks like it's part of the text field
+                .background(Color(UIColor.secondarySystemBackground))
+                .cornerRadius(10)
+            }
+            
+            // even if the action is a function we do not add the parentheses (before moving the submitTask in the ViewModel we just had it as submitTask)
+            Button(action: taskViewModel.submitTask, label: {
+                Text("Submit".uppercased())
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(height: 45)
+                    .frame(maxWidth: .infinity)
+                    .background(.indigo)
+                    .cornerRadius(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.white, lineWidth: 1)
+                    )
+            })
         }
-        .navigationTitle("Add a task")
-        .alert(isPresented: $showAlert, content: getAlert)
+        .padding(18)
+        .alert(isPresented: $taskViewModel.showAlert, content: getAlert)
     }
-    
-    func submitTask() {
-        if textIsAppropriate() {
-            taskViewModel.addNewTask(item: textFieldText)
-            // this allows us to dismiss the current view
-            presentationMode.wrappedValue.dismiss()
+        func getAlert() -> Alert {
+            return Alert(title: Text(taskViewModel.alertTitle))
         }
-    }
-    
-    func textIsAppropriate() -> Bool {
-        if textFieldText.count < 3 {
-            alertTitle = "The new task must be at least 3 characters long ❌"
-            showAlert.toggle()
-            return false
-        }
-        return true
-    }
-    
-    func getAlert() -> Alert {
-        return Alert(title: Text(alertTitle))
-    }
     }
 
 #Preview {
-    NavigationView {
+    NavigationStack {
         AddTaskView()
     }
     .environmentObject(TaskViewModel())

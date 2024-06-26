@@ -8,31 +8,36 @@
 import SwiftUI
 
 struct TaskView: View {
-
-    let gray = Color(red: 0.5, green: 0.7, blue: 0.8)
-    let red = Color(red: 1, green: 0.5, blue: 0.3)
-
+    @EnvironmentObject var taskViewModel: TaskViewModel
+    let red = Color(red: 1, green: 0, blue: 0)
     
     // everytime we have a new task it will always follow the TaskModel and will be displayed depending on which conditions it meets
-    let task: TaskModel
+    let taskItem: TaskModel
 
     var body: some View {
         List {
             HStack {
-                Image(systemName: task.isComplete ? "checkmark.circle.fill" : "circle")
-                    .foregroundColor(task.isComplete ? .green : .red)
+                Image(systemName: taskItem.isComplete ? "checkmark.circle.fill" : "circle")
+                    .foregroundColor(taskItem.isComplete ? .green : .accentColor)
                     .font(.title3)
-                task.isComplete ? Text(task.item).font(.title2).foregroundColor(gray) : Text(task.item).font(.title2).foregroundColor(red)
+                taskItem.isComplete ?
+                Text(taskItem.task)
+                    .font(.title2)
+                    .foregroundColor(.gray)
+                    .strikethrough(color: .accentColor) : Text(taskItem.task)
+                    .font(.title2)
+                    .foregroundColor(taskViewModel.isAppInLightMode ? .accentColor : .white)
                 Spacer()
             }
         }
+        .listRowSeparator(.automatic)
     }
 }
 
 #Preview {
     Group{
-        TaskView(task: TaskModel(item: "Completed task", isComplete: true))
-        TaskView(task: TaskModel(item: "New Task", isComplete: false))
+        TaskView(taskItem: TaskModel(task: "Completed task", isComplete: true))
+        TaskView(taskItem: TaskModel(task: "New Task", isComplete: false))
     }
     
 }
