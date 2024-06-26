@@ -13,15 +13,18 @@ struct MyListView: View {
     var body: some View {
         
             VStack {
-                HStack {
-                    Spacer()
-                    Text(taskViewModel.onlyShowsIncompleteTasks ? "Show All" : "")
-                    Image(systemName: taskViewModel.onlyShowsIncompleteTasks ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
-                        .font(.title3)
-                }
-                .foregroundColor(.accentColor)
-                .onTapGesture {
-                    taskViewModel.onlyShowsIncompleteTasks.toggle()
+                if (!taskViewModel.taskList.filter {$0.isComplete}.isEmpty) {
+                    HStack {
+                        Spacer()
+                        Text(taskViewModel.onlyShowsIncompleteTasks ? "Show All" : "")
+                        Image(systemName: taskViewModel.onlyShowsIncompleteTasks ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
+                            .font(.title3)
+                    }
+                    .foregroundColor(.accentColor)
+                    .onTapGesture {
+                        taskViewModel.onlyShowsIncompleteTasks.toggle()
+                    }
+                    .padding(.bottom, 5)
                 }
                 
                 List {
