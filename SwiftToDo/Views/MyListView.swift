@@ -20,7 +20,6 @@ struct MyListView: View {
                         .font(.title3)
                 }
                 .foregroundColor(.accentColor)
-                .fontWeight(.medium)
                 .onTapGesture {
                     taskViewModel.onlyShowsIncompleteTasks.toggle()
                 }

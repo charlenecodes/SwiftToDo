@@ -62,7 +62,6 @@ class TaskViewModel: ObservableObject {
         }
         textFieldText = ""
         isTextFieldInFocus = false
-
     }
     
     func markTaskComplete(taskItem: TaskModel) {

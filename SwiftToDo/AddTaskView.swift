@@ -10,6 +10,7 @@ import SwiftUI
 struct AddTaskView: View {
     
     @EnvironmentObject var taskViewModel: TaskViewModel
+    @FocusState private var textFieldIsFocused: Bool
     
     var brightPurple: Color = Color(red: 166, green: 124, blue: 217)
     var pastelPurple: Color = Color(red: 218, green: 186, blue: 252)
@@ -22,33 +23,10 @@ struct AddTaskView: View {
                     .foregroundColor(taskViewModel.isAppInLightMode ? .indigo : .white)
                     .fontWeight(.bold)
             }
-            if taskViewModel.isAppInLightMode {
                 HStack {
                     TextField("Enter a new task...", text: $taskViewModel.textFieldText)
                         .textFieldStyle(CustomTextFieldStyle())
-                        .onTapGesture {
-                            taskViewModel.isTextFieldInFocus = true
-                        }
-                    if taskViewModel.textFieldText != "" {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.gray)
-                            .onTapGesture {
-                                taskViewModel.textFieldText = ""
-                            }
-                            .padding(.trailing, 5)
-                    }
-                }
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(taskViewModel.isTextFieldInFocus ? .indigo : .gray, lineWidth: taskViewModel.isTextFieldInFocus ? 3 : 2)
-                )
-                // this background makes it so that the cancel button looks like it's part of the text field
-                .background(Color(UIColor.secondarySystemBackground))
-                .cornerRadius(10)
-            } else {
-                HStack {
-                    TextField("Enter a new task...", text: $taskViewModel.textFieldText)
-                        .textFieldStyle(CustomTextFieldStyle())
+                        .focused($textFieldIsFocused)
                         .onTapGesture {
                             taskViewModel.isTextFieldInFocus = true
                         }
@@ -68,10 +46,12 @@ struct AddTaskView: View {
                 // this background makes it so that the cancel button looks like it's part of the text field
                 .background(Color(UIColor.secondarySystemBackground))
                 .cornerRadius(10)
-            }
             
             // even if the action is a function we do not add the parentheses (before moving the submitTask in the ViewModel we just had it as submitTask)
-            Button(action: taskViewModel.submitTask, label: {
+            Button(action: {
+                taskViewModel.submitTask()
+                textFieldIsFocused = false
+            }, label: {
                 Text("Submit".uppercased())
                     .font(.headline)
                     .foregroundColor(.white)
